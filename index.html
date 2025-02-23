@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap"
         rel="stylesheet">
     <style>
-        body {
+        /* body と html タグの margin と padding をリセット */
+        body,
+        html {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
+            width: 100%;
+            height: 100%;
         }
-
 
         #header-logo {
             max-height: 50px;
@@ -88,6 +89,7 @@
             width: 100%;
             height: auto;
             object-fit: cover;
+            gap: 10px;
         }
 
         h2 {
@@ -237,16 +239,29 @@
         }
 
         .pet-clothing-item {
-            min-width: 200px;
+            min-width: 300px;
+            /* 画像の最小幅を300pxに */
+            max-width: 500px;
+            /* 画像の最大幅を500pxに */
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
+        /* 画像を大きく表示 */
         .pet-clothing-item img {
             width: 100%;
             height: auto;
+            /* 高さは自動調整 */
             border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* 画像にホバー時の効果を追加 */
+        .pet-clothing-item:hover {
+            transform: scale(1.05);
+            /* 画像を少し拡大 */
         }
 
         /* ハンドメイドの強調文言 */
@@ -259,6 +274,22 @@
             font-size: 1.2rem;
             font-weight: bold;
         }
+
+        /* スクロールバーのカスタマイズ（オプション） */
+        .pet-clothing-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .pet-clothing-gallery::-webkit-scrollbar-thumb {
+            background: #FF6F61;
+            border-radius: 5px;
+        }
+
+        .pet-clothing-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+
 
         /* スクロールバーのカスタマイズ（オプション） */
         .pet-clothing-gallery::-webkit-scrollbar {
@@ -326,6 +357,124 @@
                 /* スマホではアイコンを非表示 */
             }
         }
+
+
+        /* セクションのデザイン */
+        .content-section {
+            padding: 50px 20px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            /* 各セクションの背景色 */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* セクションの影 */
+        }
+
+        /* セクションタイトルのスタイル */
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FF6F61;
+            /* タイトルの下にライン */
+            padding-bottom: 10px;
+        }
+
+        /* 各セクションのテキストスタイル */
+        .content-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* セクション間の間隔 */
+        #business-app {
+            background-color: #fffbf2;
+            /* 事業内容セクションには柔らかい色を */
+        }
+
+        #business-pet {
+            background-color: #e6f7ff;
+            /* ペット事業セクションはブルー系 */
+        }
+
+        #about {
+            background-color: #fff5e6;
+            /* 会社概要セクションには温かみのある色を */
+        }
+
+        #news {
+            background-color: #f7f7f7;
+            /* お知らせセクションにはライトグレー */
+        }
+
+        #contact {
+            background-color: #e6ffe6;
+            /* お問い合わせセクションはグリーン系 */
+        }
+
+
+
+        /* トップ画像（動画） */
+        #hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* ビューポートの高さに合わせる */
+            overflow: hidden;
+            margin-top: 0;
+            /* ヘッダーとの隙間を解消 */
+        }
+
+        /* 動画のスタイル */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #top-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 動画がコンテナにフィットするように */
+        }
+
+        /* 動画の上にテキストをオーバーレイ表示 */
+        .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 2;
+            /* 動画より上に表示 */
+        }
+
+        .video-overlay h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .video-overlay p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* セクションのデザイン */
+        .content-section {
+            padding: 50px 20px;
+            margin: 20px 0;
+            background-color: #f4f4f4;
+            /* 各セクションの背景色 */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* セクションの影 */
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -378,12 +527,23 @@
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     </header>
 
+    <!-- トップ動画 -->
     <section id="hero">
-        <img src="itpet.png" alt="IT関連のトップ画像">
+        <div class="video-container">
+            <video autoplay loop muted id="top-video">
+                <source src="it_video.mp4" type="video/mp4"> <!-- 動画ファイル -->
+                お使いのブラウザは動画に対応していません。
+            </video>
+            <!-- オーバーレイテキスト -->
+            <div class="video-overlay">
+                <h1>ペット x IT</h1>
+                <p>テクノロジーでペットと暮らしをもっと豊かに</p>
+            </div>
+        </div>
     </section>
 
     <section id="business-app" class="content-section">
-        <h2>ITサービス事業</h2>
+        <h2 class="section-title">ITサービス事業</h2>
         <p>最先端のテクノロジーを活用したアプリを開発し、ビジネスと生活の革新を提供します。</p>
     </section>
 
@@ -392,7 +552,7 @@
         <div class="brand-logo">
             <img src="brand_logo.png" alt="ブランドロゴ" id="brand-logo">
         </div>
-        <h2>ペット事業</h2>
+        <h2 class="section-title">ペット事業</h2>
         <p>IT技術を取り入れたペット用品の開発・販売、イベント運営などを展開しています。</p>
 
         <!-- ハンドメイド犬の洋服の横スクロールギャラリー -->
@@ -434,7 +594,7 @@
     </section>
 
     <section id="about" class="content-section">
-        <h2>会社概要</h2>
+        <h2 class="section-title">会社概要</h2>
         <div class="content clearfix">
             <table>
                 <tbody>
@@ -460,12 +620,12 @@
     </section>
 
     <section id="news" class="content-section">
-        <h2>お知らせ</h2>
+        <h2 class="section-title">お知らせ</h2>
         <p>最新情報やイベントのご案内はこちらをご覧ください。</p>
     </section>
 
     <section id="contact" class="content-section">
-        <h2>お問い合わせ</h2>
+        <h2 class="section-title">お問い合わせ</h2>
         <div class="form-container">
             <form>
                 <div class="form-group">
