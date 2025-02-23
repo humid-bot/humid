@@ -290,8 +290,42 @@
         }
 
 
+        /* スマホ用のスタイル */
+        @media (max-width: 768px) {
 
+            /* ナビゲーションメニューを隠す */
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
 
+            /* メニューアイコンを表示 */
+            .menu-icon {
+                display: block;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+            /* ロゴの横線の配置 */
+            .header-content {
+                justify-content: space-between;
+            }
+        }
+
+        /* PC用（768px以上）はナビゲーションを表示 */
+        @media (min-width: 769px) {
+            nav ul {
+                display: flex;
+                /* ナビゲーションメニューを通常表示 */
+            }
+
+            .menu-icon {
+                display: none;
+                /* スマホではアイコンを非表示 */
+            }
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -320,6 +354,10 @@
                 behavior: "smooth" // スムーズスクロール
             });
         });
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+        }
     </script>
 </head>
 
@@ -337,6 +375,7 @@
                 <li><a href="#contact">お問い合わせ</a></li>
             </ul>
         </nav>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     </header>
 
     <section id="hero">
